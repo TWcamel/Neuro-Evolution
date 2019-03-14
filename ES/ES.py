@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 DNA_SIZE = 1             # DNA (real number)
-DNA_BOUND = [0, 5]       # solution upper and lower bounds
+DNA_BOUND = [-10, 10]       # solution upper and lower bounds
 N_GENERATIONS = 200
-POP_SIZE = 100           # population size
-N_KID = 50               # n kids per generation
+POP_SIZE = 1000           # population size
+N_KID = 500               # n kids per generation
 
 
 def F(x): return np.sin(10*x)*x + np.cos(2*x)*x     # to find the maximum of this function
