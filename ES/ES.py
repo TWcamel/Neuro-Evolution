@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 DNA_SIZE = 1             # DNA (real number)
-DNA_BOUND = [-10, 10]       # solution upper and lower bounds
+DNA_BOUND = [-10, 9]       # solution upper and lower bounds
 N_GENERATIONS = 200
 POP_SIZE = 1000           # population size
 N_KID = 500               # n kids per generation
