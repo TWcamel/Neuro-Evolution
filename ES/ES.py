@@ -65,3 +65,5 @@ for _ in range(N_GENERATIONS):
     pop = kill_bad(pop, kids)   # keep some good parent for elitism
 
 plt.ioff(); plt.show()
+
+print(F(x))
