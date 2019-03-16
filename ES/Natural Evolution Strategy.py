@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
-from tensorflow.contrib.distributions import MultivariateNormalFullCovariance
+from tensorflow.contrib.distributions import MultivariateNormalFullCovariance #每個參數都是獨立的，有各自的平均數與標準差
 
 DNA_SIZE = 2         # parameter (solution) number
 N_POP = 20           # population size
@@ -15,13 +15,13 @@ def get_fitness(pred): return -((pred[:, 0])**2 + pred[:, 1]**2)
 # build multivariate distribution
 mean = tf.Variable(tf.random_normal([2, ], 13., 1.), dtype=tf.float32)
 cov = tf.Variable(5. * tf.eye(DNA_SIZE), dtype=tf.float32)
-mvn = MultivariateNormalFullCovariance(loc=mean, covariance_matrix=cov)
+mvn = MultivariateNormalFullCovariance(loc=mean, covariance_matrix=cov) # start build our model
 make_kid = mvn.sample(N_POP)                                    # sampling operation
 
 # compute gradient and update mean and covariance matrix from sample and fitness
-tfkids_fit = tf.placeholder(tf.float32, [N_POP, ])
+tfkids_fit = tf.placeholder(tf.float32, [N_POP])
 tfkids = tf.placeholder(tf.float32, [N_POP, DNA_SIZE])
-loss = -tf.reduce_mean(mvn.log_prob(tfkids)*tfkids_fit)         # log prob * fitness
+loss = -tf.reduce_mean(mvn.log_prob(tfkids)*tfkids_fit)         # log prob * fitness and we want to min or obj function
 train_op = tf.train.GradientDescentOptimizer(LR).minimize(loss) # compute and apply gradients for mean and cov
 
 sess = tf.Session()
